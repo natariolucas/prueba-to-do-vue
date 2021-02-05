@@ -1,7 +1,7 @@
 <template>
   <form action="">
     <label for="nombreTarea"> Nombre de la tarea</label>
-    <input type="text" v-model="tarea.nombreTarea" />
+    <input type="text" v-model="tarea.nombreTarea"/>
 
     <button @click.prevent="agregarTarea()" type="submit">Agregar tarea</button>
   </form>
@@ -19,13 +19,18 @@ export default {
     };
   },
   methods: {
-    agregarTarea: function() {
+    agregarTarea: function () {
       this.tarea.id = (1 + Math.random()) * 100000000000000;
-      let tareaCommit = {
-        nombreTarea: this.tarea.nombreTarea,
-        id: this.tarea.id
-      };
-      this.$store.commit("agregarTarea", tareaCommit);
+      /*
+            ESTO NO GENERA ERROR
+
+            let tareaCommit = {
+              nombreTarea: this.tarea.nombreTarea,
+              id: this.tarea.id
+            };
+            this.$store.commit("agregarTarea", tareaCommit);*/
+
+      //Esto si genera error
       this.$store.commit("agregarTarea", this.tarea);
       this.tarea.nombreTarea = "";
     }
